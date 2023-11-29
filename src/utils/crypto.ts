@@ -8,7 +8,7 @@ export const generateEncryptionKey = (
   return crypto.pbkdf2Sync(password, salt, 100000, keyLength, 'sha512');
 };
 
-export const encryption = (encryption_key: string, value: object) => {
+export const encryption = (encryption_key: Buffer, value: object) => {
   // Generate an initialization vector
   const iv = crypto.randomBytes(16);
 
@@ -23,7 +23,7 @@ export const encryption = (encryption_key: string, value: object) => {
 };
 
 export const decryption = (
-  decryption_key: string,
+  decryption_key: Buffer,
   iv: string,
   value: string,
 ) => {
