@@ -4,7 +4,15 @@ import { dataController } from 'controller';
 
 const dataRouter = express.Router();
 
-dataRouter.post('/store', dataController.storeDataHandler);
-dataRouter.post('/retrieve', dataController.retrieveDataHandler);
+dataRouter.post(
+  '/store',
+  dataController.storeDataValidator(),
+  dataController.storeData,
+);
+dataRouter.post(
+  '/retrieve',
+  dataController.retrieveDataValidator(),
+  dataController.retrieveData,
+);
 
 export { dataRouter };
