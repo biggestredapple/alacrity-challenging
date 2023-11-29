@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  db:
+    image: mysql
+    expose: 
+      - 3306
+    restart: always
+    environment:
+      MYSQL_USER: alacrity
+      MYSQL_PASSWORD: alacrity
+      MYSQL_DATABASE: alacrity
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  web:
+    build: .
+    environment:
+      DB_HOST: database
+      DB_USERNAME: alacrity
+      DB_PASSWORD: alacrity
+      DB_PORT: 3306
+      DB_DATABASE: alacrity
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: on-failure    
+    links:
+      - "db:database"
