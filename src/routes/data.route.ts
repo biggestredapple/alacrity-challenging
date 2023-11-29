@@ -4,6 +4,7 @@ import { dataController } from 'controller';
 
 const dataRouter = express.Router();
 
-dataRouter.get('/store', dataController.storeDataHandler);
+dataRouter.post('/store', dataController.storeDataHandler);
+dataRouter.post('/retrieve', dataController.retrieveDataHandler);
 
 export { dataRouter };
